@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// Step 1: Vehicle Class
+
 enum VehicleType { BIKE, CAR, TRUCK }
 
 class Vehicle {
@@ -15,7 +15,7 @@ class Vehicle {
     public Vehicle(String vehicleId, VehicleType type) {
         this.vehicleId = vehicleId;
         this.type = type;
-        this.entryTime = LocalDateTime.now(); // Records current time
+        this.entryTime = LocalDateTime.now(); 
     }
 
     public String getVehicleId() { return vehicleId; }
@@ -23,7 +23,7 @@ class Vehicle {
     public LocalDateTime getEntryTime() { return entryTime; }
 }
 
-// Step 2: Parking Slot Class
+
 class Slot {
     private int slotNumber;
     private VehicleType slotType;
@@ -57,7 +57,7 @@ class ParkingLot {
         try {
             VehicleType type = VehicleType.valueOf(typeStr.toUpperCase());
             
-            // Logic: Find available slot matching type
+            
             for (Slot slot : slots) {
                 if (slot.isAvailable() && slot.getSlotType() == type) {
                     Vehicle vehicle = new Vehicle(vehicleId, type);
@@ -85,7 +85,7 @@ class ParkingLot {
     }
     private void calculateFee(Vehicle vehicle) {
         long durationSeconds = Duration.between(vehicle.getEntryTime(), LocalDateTime.now()).getSeconds();
-        // Simulation: 1 second = 1 hour for testing
+        
         double rate = (vehicle.getType() == VehicleType.BIKE) ? 10 : (vehicle.getType() == VehicleType.CAR) ? 20 : 50;
         double fee = Math.max(rate, durationSeconds * rate); 
         System.out.println("Parking Duration: " + durationSeconds + " hours (simulated)");
